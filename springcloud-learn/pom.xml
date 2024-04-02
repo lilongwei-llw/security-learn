@@ -8,38 +8,45 @@
     <modules>
         <module>order</module>
         <module>stock</module>
+        <module>llw-gateway</module>
     </modules>
     <name>springcloud-learn</name>
     <description>springcloud-learn</description>
     <packaging>pom</packaging>
 
 
+
     <properties>
-        <java.version>1.8</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>2.6.13</spring-boot.version>
-        <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
-        <nacos.version>2.2.6.RELEASE</nacos.version>
+        <!-- 指定SpringBoot版本 -->
+        <spring-boot.version>2.3.2.RELEASE</spring-boot.version>
+        <!-- 指定SpringCloud版本 -->
+        <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+        <!-- 指定SpringCloudAlibaba版本 -->
+        <spring-cloud-alibaba.version>2.2.5.RELEASE</spring-cloud-alibaba.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+<!--    <dependencies>-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter</artifactId>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-test</artifactId>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+<!--    </dependencies>-->
+
 
 
     <dependencyManagement>
         <dependencies>
+            <!-- 声明依赖 springBoot -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -47,8 +54,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
-
+            <!-- 声明依赖 springCloud -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -56,19 +62,19 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- 声明依赖 springCloudAlibaba -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-                <version>${nacos.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-                <version>${nacos.version}</version>
-            </dependency>
+
         </dependencies>
     </dependencyManagement>
+
 
     <build>
         <plugins>
