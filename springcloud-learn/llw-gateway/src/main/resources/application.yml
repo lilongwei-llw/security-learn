@@ -3,3 +3,30 @@ server:
 spring:
   application:
     name: gateway
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml  # 必须修改成yaml
+        group: DEFAULT_GROUP  # 缺省即可
+        prefix: ${spring.application.name}
+
+      username: nacos
+      password: nacos
+
+
+    gateway:
+#      路由规则
+      routes:
+        - id: order_route  #唯一标识
+          uri: lb://order-service #转发地址 lb:load blance
+        #断言规则
+          predicates:
+           - Path=/order-server/**
+          filters:
+           - StripPrefix=1
+
+
